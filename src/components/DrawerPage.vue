@@ -16,9 +16,9 @@ function shuffleArray(array) {
 
 const dataProvider = inject("dp");
 const _pz = []
-const uniqueRandomNumbers = [...Array(43).keys()];
-shuffleArray(uniqueRandomNumbers);
-for (let i = 1; i <= 43; i++) {
+const uniqueRandomNumbers = [...Array(42).keys()];
+// shuffleArray(uniqueRandomNumbers);
+for (let i = 1; i <= 42; i++) {
   const prize = {fonts: [{text: dataProvider.drawerNo2Name(i), top: '34%'}]};
   _pz.push(prize);
 }
@@ -31,25 +31,32 @@ const updateGroup = () => {
   if (index >= dataProvider.drawGroups.length) {
     index = 0
   }
-  slots.value = []
-  let j = 0;
+  const sl = []
   for (let i = 0; i < dataProvider.drawGroups[index].length; i++) {
     const slot = {order: []}
-    for (; j < 6 * (i + 1); j++) {
+    for (let j = 0; j < 42; j++) {
       slot.order.push(uniqueRandomNumbers[j])
     }
-    slots.value.push(slot)
+    sl.push(slot)
   }
+  slots.value = sl
 }
 
 const nextGroup = () => {
+  if (index >= dataProvider.drawGroups.length) {
+    buttonName.value = "选人阶段结束"
+    return
+  }
   buttonName.value ="换一批"
   slotMachine.value.play()
   setTimeout(() => {
     slotMachine.value.stop(dataProvider.drawGroups[index])
-    updateGroup()
   }, 3000)
+}
+
+const endCallback = (prize)=> {
   index++
+  // updateGroup()
 }
 
 onMounted(() => {
@@ -97,6 +104,7 @@ const buttonName = ref("选人！")
         :slots="slots"
         :defaultConfig="defaultConfig"
         :defaultStyle="defaultStyle"
+        @end="endCallback"
     />
     <button class="drawer-button" @click="nextGroup">{{buttonName}}</button>
   </div>

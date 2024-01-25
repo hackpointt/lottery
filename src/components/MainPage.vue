@@ -51,62 +51,63 @@ const levelButtonContainerStyle1 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, -260px)',
+  transform: 'translate(45%, -440%)',
 })
 
 const levelButtonContainerStyle2 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, -188px)',
+  transform: 'translate(45%, -320%)',
 })
 
 const levelButtonContainerStyle3 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, -115px)',
+  transform: 'translate(45%, -200%)',
 })
 
 const levelButtonContainerStyle4 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, -42px)',
+  transform: 'translate(45%, -70%)',
 })
 
 const levelButtonContainerStyle5 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, 32px)',
+  transform: 'translate(45%, 60%)',
 })
 
 const levelButtonContainerStyle6 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, 103px)',
+  transform: 'translate(45%, 180%)',
 })
 
 const levelButtonContainerStyle7 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, 176px)',
+  transform: 'translate(45%, 300%)',
 })
 
 const levelButtonContainerStyle8 = ref({
   position: 'absolute',
   top: '50%',
   left: '50%',
-  transform: 'translate(160px, 247px)',
+  transform: 'translate(45%, 420%)',
 })
 
 const levelButtonStyle = ref({
-  width: '380px',
-  height: '60px',
+  width: '460px',
+  height: '70px',
   backgroundColor: 'transparent',
+  // border: '1px solid',
   border: 'none',
 })
 

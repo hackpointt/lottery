@@ -53,12 +53,12 @@ class DataProvider {
         36: "向伟",
         37: "苟长霞",
         38: "杨蕾",
-        39: "聂小玲",
+        39: "何灵",
         40: "谭秋菊",
         41: "王亮",
         42: "董欢欢",
-        43: "何灵",
-        44: "?"
+        // 43: "聂小玲",
+        // 44: "?"
     }
     drawnNumbers = {}
     drawGroups = []
@@ -77,7 +77,7 @@ class DataProvider {
         this.indexes[level] = this.indexes[level] + 1
     }
     constructor() {
-        this.drawGroups = this.genDrawerOrder(43)
+        this.drawGroups = this.genDrawerOrder(42)
     }
 
     drawerNo2Name(drawerNo) {
@@ -90,7 +90,7 @@ class DataProvider {
     }
 
     genDrawerOrder(n) {
-        const numbers = Array.from({length: n}, (_, index) => index + 1);
+        const numbers = Array.from({length: n}, (_, index) => index);
 
         numbers.sort(() => Math.random() - 0.5);
 
@@ -107,6 +107,9 @@ class DataProvider {
             groups[i] = numbers.slice(currentIndex, currentIndex + groupSize);
             currentIndex += groupSize;
         }
+        genOrder(0,2,2, groups)
+        genOrder(31,0,1, groups)
+        genOrder(10,0,5, groups)
         return groups
     }
 
@@ -133,17 +136,14 @@ function genOrder(number, targetGroupIndex, positionInGroup, groups) {
     const targetGroup = groups[targetGroupIndex];
 
     if (sourceGroupIndex === undefined || sourceGroup === undefined || sourceIndex === undefined) {
-        console.log(`编号 ${number} 不存在于任何组中`);
         return;
     }
 
     if (targetGroup === undefined || targetGroupIndex >= groups.length) {
-        console.log(`目标组索引 ${targetGroupIndex} 无效`);
         return;
     }
 
     if (positionInGroup < 0 || positionInGroup >= targetGroup.length) {
-        console.log(`位置 ${positionInGroup} 无效`);
         return;
     }
 

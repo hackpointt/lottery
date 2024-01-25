@@ -107,9 +107,6 @@ class DataProvider {
             groups[i] = numbers.slice(currentIndex, currentIndex + groupSize);
             currentIndex += groupSize;
         }
-        genOrder(0,2,2, groups)
-        genOrder(31,0,1, groups)
-        genOrder(10,0,5, groups)
         return groups
     }
 

@@ -1,6 +1,6 @@
 class DataProvider {
 
-    data = {
+    winning = {
         1: [[6, 6, 6, 7, 1, 8, 8, 8, 8]],
         2: [[6, 6, 6, 8, 9, 6, 8, 8, 8], [6, 6, 6, 6, 4, 1, 8, 8, 8]],
         3: [[6, 6, 6, 1, 4, 0, 8, 8, 8], [6, 6, 6, 0, 7, 7, 8, 8, 8], [6, 6, 6, 9, 3, 3, 8, 8, 8]],
@@ -10,7 +10,7 @@ class DataProvider {
             [6, 6, 6, 5, 5, 5, 8, 8, 8], [6, 6, 6, 6, 9, 9, 8, 8, 8]],
         7: [[6, 6, 6, 5, 7, 4, 8, 8, 8], [6, 6, 6, 1, 7, 2, 8, 8, 8], [6, 6, 6, 0, 5, 4, 8, 8, 8], [6, 6, 6, 2, 3, 0, 8, 8, 8], [6, 6, 6, 7, 4, 1, 8, 8, 8],
             [6, 6, 6, 8, 8, 8, 8, 8, 8], [6, 6, 6, 7, 9, 9, 8, 8, 8], [6, 6, 6, 0, 9, 3, 8, 8, 8], [6, 6, 6, 0, 1, 9, 8, 8, 8]],
-        8: [[6, 6, 6, 0, 1, 0, 8, 8, 8], [6, 6, 6, 8, 2, 5, 8, 8, 8], [6, 6, 6, 7, 0, 9, 8, 8, 8], [6, 6, 6, 7, 1, 7, 8, 8, 8], [6, 6, 6, 4, 9, 7, 8, 8, 8],
+        8: [[6, 6, 6, 0, 1, 0, 8, 8, 8], [6, 6, 6, 8, 2, 5, 8, 8, 8], [6, 6, 6, 7, 9, 0, 8, 8, 8], [6, 6, 6, 7, 1, 7, 8, 8, 8], [6, 6, 6, 4, 9, 7, 8, 8, 8],
             [6, 6, 6, 9, 3, 7, 8, 8, 8], [6, 6, 6, 1, 0, 0, 8, 8, 8], [6, 6, 6, 7, 2, 3, 8, 8, 8], [6, 6, 6, 5, 9, 5, 8, 8, 8], [6, 6, 6, 1, 5, 0, 8, 8, 8],
             [6, 6, 6, 7, 2, 8, 8, 8, 8], [6, 6, 6, 2, 5, 5, 8, 8, 8]]
     }
@@ -57,18 +57,36 @@ class DataProvider {
         40: "谭秋菊",
         41: "王亮",
         42: "董欢欢",
-        43: "何灵"
+        43: "何灵",
+        44: "?"
     }
     drawnNumbers = {}
     drawGroups = []
-
+    index = 0
+    indexes = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+    }
+    updateIndex(level) {
+        this.indexes[level] = this.indexes[level] + 1
+    }
     constructor() {
-        this.data = 0
         this.drawGroups = this.genDrawerOrder(43)
     }
 
     drawerNo2Name(drawerNo) {
-        return this.drawers[drawerNo]
+
+        const result = this.drawers[drawerNo]
+        if (result === undefined) {
+            return "?"
+        }
+        return result
     }
 
     genDrawerOrder(n) {
@@ -85,7 +103,7 @@ class DataProvider {
 
         let currentIndex = 0;
         for (let i = 0; i < groupsCount; i++) {
-            const groupSize = averagePerGroup + (i < remainingNumbers ? 1 : 0);
+            const groupSize = averagePerGroup + (i >= groupsCount - remainingNumbers ? 1 : 0);
             groups[i] = numbers.slice(currentIndex, currentIndex + groupSize);
             currentIndex += groupSize;
         }
@@ -94,7 +112,7 @@ class DataProvider {
 
     fetchData(level) {
         console.log("dataProvider fetchData level: " + level)
-        this.data = level
+        this.data = this.winning[level]
     }
 }
 

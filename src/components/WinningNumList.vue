@@ -1,8 +1,11 @@
 <template>
   <div :style="chineseNewYearStyle">
-    <ul>
-      <li v-for="(number, index) in numbers" :key="index">{{ number }}</li>
-    </ul>
+    <h1 :style="h1Style">中奖名单</h1>
+    <div class="list-container">
+      <ul>
+        <li v-for="(number, index) in numbers" :key="index">{{ number }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -20,37 +23,26 @@ const dataProvider = inject("dp");
 const numbers = computed(() => dataProvider.drawnNumbers[props.pageId])
 
 // 样式
+const h1Style = ref({
+  width: '100%',
+})
 const chineseNewYearStyle = ref({
   backgroundColor: '#ffec40', // 黄色背景
   color: '#e25822', // 红色文字
-  padding: '0',
+  padding: '2px',
   textAlign: 'center',
   borderRadius: '10px',
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-  position: 'flex',
-  bottom: '0',
   width: '100%',
-  height: '300px',
-
-  columnCount: '5',
-  columnGap: '10px',
-  overflow: 'auto'
+  height: '500px',
+  fontSize: '30px',
 })
 
 // 应用样式
 </script>
 
 <style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  columns: inherit;
-}
-
-li {
-  font-size: 36px;
-  margin: 10px;
-  break-inside: avoid;
-}
+.list-container { display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;height: 200px }
+ul { display: flex; flex-wrap: wrap; justify-content: flex-start; list-style-type: none; padding: 0; margin: 0; width: 100%; }
+li { margin: 10px; width: 180px;}
 </style>
